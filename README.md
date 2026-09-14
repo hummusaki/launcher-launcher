@@ -20,6 +20,16 @@ Launcher Launcher is a native SwiftUI macOS app that finds game launchers, compa
 
 ## Build and run
 
+### From Release
+
+Download the zip [here](https://github.com/hummusaki/launcher-launcher/releases/tag/v0.1.0)
+
+Run the app, then go to: 
+1. Settings
+2. Privacy & Security
+3. Scroll down
+4. Allow the app to open
+
 ### From Terminal
 
 ```sh
