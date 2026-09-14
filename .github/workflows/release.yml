@@ -1,0 +1,20 @@
+name: Build and release
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  release:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test
+        run: swift test
+      - name: Package
+        run: bash scripts/package.sh
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "${{ github.ref_name }}" dist/LauncherLauncher-macOS.zip dist/SHA256SUMS.txt --title "Launcher Launcher ${{ github.ref_name }}" --notes "Initial Apple Silicon release for macOS 14+. Download the ZIP, extract the app, and move it to Applications. This build is ad-hoc signed, not Apple-notarized; macOS may require approval in System Settings > Privacy & Security."
